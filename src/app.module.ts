@@ -7,7 +7,7 @@ import { AdminsModule } from './modules/admins/admins.module';
 
 @Module({
   imports: [UsersModule, AdminsModule],
-  controllers: [AppController, AdminsController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
