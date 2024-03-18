@@ -1,5 +1,6 @@
-import { Controller, Get, Header, HttpCode, Param, Query, Res } from '@nestjs/common';
+import { Controller, Get, Header, HttpCode, Param, Query, Req, Res } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { Request, Response } from 'express';
 
 @Controller('/api/users')
 
@@ -23,16 +24,18 @@ export class UsersController {
   }
 
   // user sign-up route
-  @Get('/sign-up')
-  @Header('Content-Type', 'application/json')
-  @HttpCode(200)
-  userSignUp(
-    @Query() username: string,
-    @Query() pass: string,
-  ) {
-    return this.usersService.userSignUp(username, pass);
-  }
-  
+  // @Get('/sign-up')
+  // @Header('Content-Type', 'application/json')
+  // @HttpCode(200)
+  // async userSignUp(
+  //   @Query() username: string,
+  //   @Query() pass: string,
+  //   @Res() res: any
+  // ): Promise<any> {
+  //   const result = await this.usersService.userSignUp(username, pass);
+  //   return res.status(200).json(result)
+  // }
+
   // user sign-in route
   @Get('/sign-in')
   @Header('Content-Type', 'application/json')

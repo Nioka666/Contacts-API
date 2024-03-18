@@ -20,10 +20,4 @@ export class UsersService {
             return false;
         }
     }
-
-    async userSignUp(username: string, pass: string) {
-        return {
-            username, pass
-        }
-    }
 }
