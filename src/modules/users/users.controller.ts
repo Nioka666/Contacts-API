@@ -6,6 +6,11 @@ import { Request, Response } from 'express';
 
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
+  @Get()
+  @HttpCode(200)
+  sayHelloFromUser(@Res() res: any): Record<any, any> {
+    return this.usersService.sayHelloFromUser(res);
+  }
 
   // showing user-list route
   @Get('/list')

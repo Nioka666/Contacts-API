@@ -1,8 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable} from '@nestjs/common';
 import { UsersList } from './data/usersList';
 
 @Injectable()
 export class UsersService {
+    async sayHelloFromUser(res: any): Promise<any> {
+        res.status(200).send("Hello from Users route");
+    }
+    
     async getUsersList(): Promise<any> {
         return UsersList;
     }
