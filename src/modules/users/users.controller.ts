@@ -33,10 +33,15 @@ export class UsersController {
     @Res() res: Response,
     @Req() req: Request
   ): Promise<any> {
-    const newUser = await this.usersService.userSignUp(username, password);
-    res.cookie('newUser', newUser);
-    res.status(201).send(req.cookies['newUser']);
+    const result = await this.usersService.userSignUp(username, password);
+    if (result.status === 200) {
+      res.cookie('newUser', result.newUser);
+      return res.status(201).json(result);
+    } else {
+      return res.status(301).json(result);
+    }
   }
+
 
   // user sign-in route
   @Get('/sign-in')

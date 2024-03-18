@@ -13,18 +13,25 @@ export class UsersService {
         };
     }
 
-    async userSignUp(username: string, password: string) {
-        const newUser = {
-            status: 200,
-            message: "User Created!",
-            newUseer: {
-                username: username,
-                password: password
-            }
+    async userSignUp(username: string, password: string): Promise<any> {
+        if (username && password) {
+            const newUser = {
+                status: 200,
+                message: "User Created!",
+                newUser: {
+                    username: username,
+                    password: password
+                }
+            };
+            return newUser;
+        } else {
+            return {
+                status: 301,
+                message: "Sign Up Failed!"
+            };
         }
-        const newUserStr = JSON.stringify(newUser);
-        return newUserStr;
     }
+
 
     async userSignIn(username: string, pass: string): Promise<any> {
         if (username === 'user' && pass === 'user') {
