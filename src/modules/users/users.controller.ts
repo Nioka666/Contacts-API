@@ -24,17 +24,19 @@ export class UsersController {
   }
 
   // user sign-up route
-  // @Get('/sign-up')
-  // @Header('Content-Type', 'application/json')
-  // @HttpCode(200)
-  // async userSignUp(
-  //   @Query() username: string,
-  //   @Query() pass: string,
-  //   @Res() res: any
-  // ): Promise<any> {
-  //   const result = await this.usersService.userSignUp(username, pass);
-  //   return res.status(200).json(result)
-  // }
+  @Get('/sign-up')
+  @Header('Content-Type', 'application/json')
+  @HttpCode(200)
+  async userSignUp(
+    @Query('username') username: string,
+    @Query('password') password: string,
+    @Res() res: Response,
+    @Req() req: Request
+  ): Promise<any> {
+    const newUser = await this.usersService.userSignUp(username, password);
+    res.cookie('newUser', newUser);
+    res.status(201).send(req.cookies['newUser']);
+  }
 
   // user sign-in route
   @Get('/sign-in')
